@@ -1,4 +1,7 @@
+Given('I am on base page') do
+  @page = Etsy::HomePage.new.open_homepage
+end
 
-Given('I am on member application page') do
-  homepage
+And(/^I sign in as a registered user$/) do
+  @page.sign_in
 end

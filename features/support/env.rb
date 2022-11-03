@@ -1,12 +1,8 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'capybara/selenium/driver'
-require 'site_prism'
-require_relative '../pages/home_page'
+require_relative '../support/relatives'
 
 Capybara.register_driver :site_prism do |app|
-  browser = ENV.fetch('browser', 'firefox').to_sym
-  Capybara::Selenium::Driver.new(app, browser: browser, desired_capabilities: capabilities)
+  browser = ENV.fetch('BROWSER', 'chrome').to_sym
+  Capybara::Selenium::Driver.new(app, browser: browser)
 end
 
 # Then tell Capybara to use the Driver you've just defined as its default driver

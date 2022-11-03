@@ -1,0 +1,8 @@
+require 'capybara'
+require 'capybara/cucumber'
+require 'capybara/selenium/driver'
+require 'site_prism'
+require_relative '../pages/home_page'
+require_relative '../step_definitions/login_steps'
+require_relative '../step_definitions/wrapper_steps'
+require_relative '../support/helpers'
