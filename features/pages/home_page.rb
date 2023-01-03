@@ -2,28 +2,30 @@
 
 require_relative 'main_page'
 require_relative '../support/helpers'
+require_relative '../support/relatives'
 
-module Etsy
-  class HomePage < Etsy::MainPage
-    $credentials = retrieve_credentials
+module Elopage
+  class HomePage < Elopage::MainPage
+    $credentials = Support::Helpers.new.retrieve_credentials
     set_url $credentials[0]['base_url']
-    element :sign_in_link, :xpath, "//button[contains(text(),'Sign in')]"
-    element :email_input, '#join_neu_email_field'
-    element :password_input, '#join_neu_password_field'
-    element :sign_in_button, :xpath, "//button[@name='submit_attempt']"
+    element :allow_cookies_button, '#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll'
+    element :login_link, :xpath, "//a[contains(text(),'Login')]"
 
     def open_homepage
-      @home_page = Etsy::HomePage.new
+      @home_page = Elopage::HomePage.new
       @home_page.load
       self
     end
 
-    def sign_in
-      sign_in_link.click
-      email_input.set($credentials[0]['email_address'])
-      password_input.set($credentials[0]['password'])
-      sign_in_button.click
-      puts '231321'
+    def tap_login
+      wait_until_login_link_visible
+      login_link.click
+      Elopage::SigninPage.new
+    end
+
+    def allow_cookies
+      wait_until_allow_cookies_button_visible
+      allow_cookies_button.click
     end
   end
 end

@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require_relative '../support/relatives'
+require 'faker'
+
 
 Capybara.register_driver :site_prism do |app|
   browser = ENV.fetch('BROWSER', 'chrome').to_sym
@@ -9,3 +13,5 @@ end
 Capybara.configure do |config|
   config.default_driver = :site_prism
 end
+
+Capybara.page.driver.browser.manage.window.maximize

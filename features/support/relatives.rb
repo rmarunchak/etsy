@@ -1,8 +1,17 @@
+# frozen_string_literal: true
+
 require 'capybara'
+require 'capybara/rspec/matchers'
 require 'capybara/cucumber'
 require 'capybara/selenium/driver'
 require 'site_prism'
+require 'rest-client'
+require 'logger'
+require 'factory_bot'
+require_relative '../pages/profile_page'
+require_relative '../pages/shop_page'
 require_relative '../pages/home_page'
 require_relative '../step_definitions/login_steps'
-require_relative '../step_definitions/wrapper_steps'
 require_relative '../support/helpers'
+require_relative '../generator/endpoint/endpoint'
+require_relative '../step_definitions/generator_steps.rb'
