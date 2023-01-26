@@ -9,7 +9,8 @@ module Elopage
     element :default_banner_image, '#default-shop-banner-img'
 
     def select_shop(product)
-      wait_until_default_banner_image_visible
+      sleep 3
+      # wait_until_default_banner_image_visible
       find(:xpath, "//div[contains(text(),'#{product}')]").click
     end
 

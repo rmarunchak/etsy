@@ -2,6 +2,8 @@
 
 require_relative '../support/relatives'
 require 'faker'
+require 'capybara-screenshot/cucumber'
+
 
 
 Capybara.register_driver :site_prism do |app|
