@@ -1,0 +1,1 @@
+default: -r features --format junit --out features/reports --format pretty -r features --format json --out series_run<%= ENV['TEST_ENV_NUMBER']%>.json --strict
