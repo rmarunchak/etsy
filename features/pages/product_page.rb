@@ -9,6 +9,8 @@ module Elopage
     element :checkout_button, :xpath, "//button[normalize-space()='Go to checkout']"
 
     def tap_checkout
+      log = Logger.new(STDOUT)
+      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
       checkout_button.click
     end
 

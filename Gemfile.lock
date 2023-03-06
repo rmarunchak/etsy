@@ -8,6 +8,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    after_do (0.4.0)
     allure-cucumber (2.18.0)
       allure-ruby-commons (= 2.18.0)
       cucumber (>= 4.0.0, < 9)
@@ -175,6 +176,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  after_do
   allure-cucumber
   byebug
   capybara
