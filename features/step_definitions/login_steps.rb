@@ -3,10 +3,9 @@
 require_relative '../support/decorator'
 
 Given('I am on base page') do
-  home_page = Support::Decorator.new(PageFactory.home_page)
-  home_page.open_homepage
-  home_page.allow_cookies
-  home_page.tap_login
+  @home_page = Support::Decorator.new(Elopage::HomePage)
+  @home_page.call_with_log(:open_homepage)
+  @home_page.call_with_log(:allow_cookies)
 end
 
 And(/^I login as a seller$/) do

@@ -11,10 +11,6 @@ module Elopage
     element :allow_cookies_button, '#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll'
     element :login_link, :xpath, "//a[contains(text(),'Login')]"
 
-    def log_info(method_name, class_name)
-      log = Logger.new(STDOUT)
-      log.info("#{method_name} on #{class_name}")
-    end
 
     def open_homepage
       #log_info(__method__, self.class.name.gsub('Elopage::', ''))
