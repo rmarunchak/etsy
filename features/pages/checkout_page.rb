@@ -27,6 +27,43 @@ module Elopage
       first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))
     end
 
+    log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))
+
+    log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))
+
+    log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))
+
+
+    log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))
+    log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))   log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))   log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))   log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))   log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))   log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))   log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))   log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))   log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+    wait_until_first_name_input_visible
+    first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))
+
+
     def put_last_name
       log = Logger.new(STDOUT)
       log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
