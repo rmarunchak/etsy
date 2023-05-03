@@ -1,5 +1,6 @@
 name: Danger
 run-name: ${{ github.actor }} is using Danger Gem ⚠️
+on: [push]
 if: github.event_name  == 'pull_request'
 jobs:
   Explore-GitHub-Actions:
