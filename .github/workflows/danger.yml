@@ -4,6 +4,9 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - run: gem install danger
       - run: bundle exec danger --dangerfile=Dangerfile --danger_id=danger-pr
