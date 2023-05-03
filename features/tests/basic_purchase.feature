@@ -7,3 +7,4 @@ Feature: : Basic purchase
     And I click on checkout button
     And I fill in payer information and press buy button
     And I verify Bank Wire order
+wdawda
