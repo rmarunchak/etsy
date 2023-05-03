@@ -89,8 +89,9 @@ GEM
     danger-checkstyle_format (0.1.1)
       danger-plugin-api (~> 1.0)
       ox (~> 2.0)
-    danger-kotlin_detekt (0.0.3)
-      danger-plugin-api (~> 1.0)
+    danger-junit (1.0.2)
+      danger (> 2.0)
+      ox (~> 2.0)
     danger-plugin-api (1.0.0)
       danger (> 2.0)
     diff-lcs (1.5.0)
@@ -251,7 +252,7 @@ DEPENDENCIES
   danger
   danger-android_lint
   danger-checkstyle_format
-  danger-kotlin_detekt
+  danger-junit
   factory_bot
   faker
   logger
