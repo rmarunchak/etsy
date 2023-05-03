@@ -1,0 +1,10 @@
+- name: Run Danger
+  if: github.event_name  == 'pull_request'
+  run: |
+    # install danger and its dependencies using bundler
+    gem install danger
+    # execute danger for this PR
+    bundle exec danger --dangerfile=Dangerfile --danger_id=danger-pr
+  env:
+    # the token used by danger to report the results on the PR
+    DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
