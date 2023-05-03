@@ -6,17 +6,14 @@ Given('I am on base page') do
   @home_page = Support::Decorator.new(Elopage::HomePage)
   @home_page.call_with_log(:open_homepage)
   @home_page.call_with_log(:allow_cookies)
+  @home_page.call_with_log(:tap_login)
 end
 
 And(/^I login as a seller$/) do
-  sign_in_page = Decorator.new(PageFactory.sign_in_page)
-  sign_in_page.set_email
-  sign_in_page.set_password
-  sign_in_page.tap_sign_in
-end
-
-And(/^I login as a payer$/) do
-  visit('https://staging.elopage.com/payer')
+  @sign_in_page = Support::Decorator.new(Elopage::MainPage)
+  @sign_in_page.call_with_log(:set_email)
+  @sign_in_page.call_with_log(:set_password)
+  @sign_in_page.call_with_log(:tap_sign_in)
 end
 
 And(/^I visit "([^"]*)" shop$/) do |shop_name|

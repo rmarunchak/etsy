@@ -4,6 +4,7 @@ require_relative '../support/relatives'
 require 'faker'
 require 'capybara-screenshot/cucumber'
 require 'cucumber'
+require "allure-cucumber"
 
 
 
