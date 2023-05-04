@@ -8,6 +8,7 @@ gem 'danger'
 gem 'danger-junit'
 gem 'danger-android_lint'
 gem 'danger-checkstyle_format'
+gem 'danger-rubocop'
 gem 'activesupport'
 gem 'after_do'
 gem "allure-cucumber"
