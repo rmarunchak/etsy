@@ -1,11 +1,25 @@
 
-# Warn when there is a big PR
-warn("Big PR") if git.lines_of_code > 5000
+# Dangerfile
+require 'octokit'
 
-warn("PR is classed as Work in Progress") if github.pr_title.include? "WIP"
+def close_pr_with_empty_description
+  pr_description = github.pr_json[:body]
 
-if github.pr_body.length < 5
-  fail "Please provide a summary in the PR description"
+  if pr_description.nil? || pr_description.strip.empty?
+    # Create a friendly message
+    message = "This PR has an empty description. In order to maintain the quality of our repository, "\
+              "we require that all PRs have a description. "\
+              "Please open a new PR with a proper description to contribute to the project."
+
+    # Add a warning to the PR
+    warn(message)
+
+    # Close the PR
+    client = Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
+    repo = github.pr_json[:base][:repo][:full_name]
+    pr_number = github.pr_json[:number]
+    client.close_pull_request(repo, pr_number)
+  end
 end
 
-rubocop.lint(inline_mode: true)
+close_pr_with_empty_description
