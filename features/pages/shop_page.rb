@@ -10,9 +10,6 @@ module Elopage
 
     def select_shop(product)
       sleep 3
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
-      # wait_until_default_banner_image_visible
       find(:xpath, "//div[contains(text(),'#{product}')]").click
     end
 

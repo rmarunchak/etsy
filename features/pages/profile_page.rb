@@ -15,7 +15,6 @@ module Elopage
 
     def image_upload
       puts "231123"
-      #page.attach_file(upload_button, '/Users/rmaru/Downloads/the-sopranos.gif')
       browser.file_field(upload_button).set("/Users/rmaru/Downloads/the-sopranos.gif")
     end
 

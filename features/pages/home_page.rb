@@ -13,21 +13,18 @@ module Elopage
 
 
     def open_homepage
-      #log_info(__method__, self.class.name.gsub('Elopage::', ''))
       @home_page = Elopage::HomePage.new
       @home_page.load
       self
     end
 
     def tap_login
-      #log_info(__method__, self.class.name.gsub('Elopage::', ''))
       wait_until_login_link_visible
       login_link.click
       Elopage::SigninPage.new
     end
 
     def allow_cookies
-      #log_info(__method__, self.class.name.gsub('Elopage::', ''))
       wait_until_allow_cookies_button_visible
       allow_cookies_button.click
     end
