@@ -43,6 +43,14 @@ namespace :test do
     end
   end
 
+  desc 'Run tests in headless mode'
+  task :headless do
+    sh 'bundle install'
+    ENV['HEADLESS'] = 'true'
+    Rake::Task["cucumber"].execute
+    Rake::Task["cucumber"].reenable  # Allow the cucumber task to be executed again
+  end
+
   desc 'Run tests in cross-browser mode'
   task :cross_browser => [:chrome, :firefox, :safari]
 end
