@@ -9,6 +9,7 @@ Given('I am on base page') do
   @home_page.call_with_log(:tap_login)
 end
 
+
 And(/^I login as a seller$/) do
   @sign_in_page = Support::Decorator.new(Elopage::MainPage)
   @sign_in_page.call_with_log(:set_email)

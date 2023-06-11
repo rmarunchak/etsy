@@ -28,3 +28,4 @@ gem 'site_prism'
 gem 'webdrivers'
 gem 'capybara-screenshot'
 gem "allure-cucumber"
+gem 'aquarium'

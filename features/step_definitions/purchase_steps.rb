@@ -9,6 +9,7 @@ And(/^I click on checkout button$/) do
 end
 
 And(/^I fill in payer information and press buy button$/) do
+  step_name = 'I fill in payer information and press buy button'
   PageFactory.checkout_page.put_first_name
   PageFactory.checkout_page.put_last_name
   PageFactory.checkout_page.put_email
@@ -17,4 +18,5 @@ And(/^I fill in payer information and press buy button$/) do
   PageFactory.checkout_page.put_city
   PageFactory.checkout_page.tap_bank_wire
   PageFactory.checkout_page.tap_buy
+  PageFactory.checkout_page.attach_logs(step_name)
 end

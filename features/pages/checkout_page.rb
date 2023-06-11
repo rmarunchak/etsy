@@ -19,73 +19,83 @@ module Elopage
     element :custom_checkbox, :xpath, "//div[@class='cancel-terms']//span[@class='custom-check-mark']"
     element :buy_button, :xpath, "//button[normalize-space()='Buy now!']"
 
+    def initialize
+      @logs = []
+    end
 
     def put_first_name
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       wait_until_first_name_input_visible
       first_name_input.set(Faker::Name.first_name.gsub(/[^0-9A-Za-z]/, ''))
     end
 
     def put_last_name
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       wait_until_last_name_input_visible
       last_name_input.set(Faker::Name.last_name.gsub(/[^0-9A-Za-z]/, ''))
     end
 
     def put_email
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       email_input.set(Faker::Internet.safe_email)
     end
 
     def put_address
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       address_input.set(Faker::Address.street_address)
     end
 
     def put_zip
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       zip_input.set(Faker::Address.zip)
     end
 
     def put_city
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       city_input.set(Faker::Address.city)
     end
 
     def tap_credit_card
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       credit_card_checkbox.click
     end
 
     def put_card_number
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       card_number_input.click.set('4242 4242 4242 4242 4240')
     end
 
     def tap_bank_wire
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       bank_wire_checkbox.click
     end
 
     def tap_custom_checkbox
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       custom_checkbox.click
     end
 
     def tap_buy
-      log = Logger.new(STDOUT)
-      log.info("#{__method__} on #{self.class.name.gsub('Elopage::', '')}")
+      log_info(__method__)
       buy_button.click
+    end
+
+    def attach_logs(step_name)
+      Allure.add_attachment(
+        name: step_name,
+        source: File.read('logfile.log'),
+        type: Allure::ContentType::TXT,
+        test_case: false
+      )
+    end
+
+    private
+
+    def log_info(method_name)
+      logger = Logger.new('logfile.log')
+      log_message = "- #{method_name} on #{self.class.name.demodulize}"
+      logger.info(log_message)
+      @logs << log_message
     end
   end
 end

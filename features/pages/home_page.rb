@@ -11,7 +11,6 @@ module Elopage
     element :allow_cookies_button, '#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll'
     element :login_link, :xpath, "//a[contains(text(),'Login')]"
 
-
     def open_homepage
       @home_page = Elopage::HomePage.new
       @home_page.load
