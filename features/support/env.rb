@@ -4,7 +4,7 @@ require_relative '../support/relatives'
 require 'faker'
 require 'capybara-screenshot/cucumber'
 require 'cucumber'
-require "allure-cucumber"
+require 'allure-cucumber'
 require 'selenium-webdriver'
 
 Capybara.register_driver :site_prism do |app|
@@ -22,6 +22,18 @@ Capybara.register_driver :site_prism do |app|
             end
 
   Capybara::Selenium::Driver.new(app, browser: browser, options: options)
+end
+
+After do |scenario|
+  if scenario.failed?
+    screenshot_file = page.save_screenshot('screenshot.png')
+    Allure.add_attachment(
+      name: 'Screenshot',
+      source: File.open(screenshot_file),
+      type: Allure::ContentType::PNG,
+      test_case: true
+    )
+  end
 end
 
 # Then tell Capybara to use the Driver you've just defined as its default driver
