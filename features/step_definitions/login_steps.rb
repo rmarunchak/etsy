@@ -3,10 +3,10 @@
 require_relative '../support/decorator'
 
 Given('I am on base page') do
-  @home_page = Support::Decorator.new(Elopage::HomePage)
-  @home_page.call_with_log(:open_homepage)
-  @home_page.call_with_log(:allow_cookies)
-  @home_page.call_with_log(:tap_login)
+  PageFactory.home_page.open_homepage
+  PageFactory.home_page.allow_cookies
+  PageFactory.home_page.tap_login
+  PageFactory.home_page.attach_logs
 end
 
 
@@ -18,6 +18,16 @@ And(/^I login as a seller$/) do
 end
 
 And(/^I visit "([^"]*)" shop$/) do |shop_name|
-  visit("https://staging.elopage.com/s/#{shop_name}")
-  page.save_screenshot('screen.png', full: true)
+  url = "https://staging.elopage.com/s/#{shop_name}"
+  logger = Logger.new('logfile.log')
+  File.open('logfile.log', 'w').close
+  logger.info("User redirects to #{url}")
+  visit(url)
+
+  Allure.add_attachment(
+    name: 'logfile',
+    source: File.read('logfile.log'),
+    type: Allure::ContentType::TXT,
+    test_case: false
+  )
 end

@@ -21,6 +21,7 @@ module Elopage
 
     def initialize
       @logs = []
+      File.open('logfile.log', 'w').close
     end
 
     def put_first_name
@@ -80,9 +81,9 @@ module Elopage
       buy_button.click
     end
 
-    def attach_logs(step_name)
+    def attach_logs
       Allure.add_attachment(
-        name: step_name,
+        name: 'logfile',
         source: File.read('logfile.log'),
         type: Allure::ContentType::TXT,
         test_case: false
@@ -93,7 +94,7 @@ module Elopage
 
     def log_info(method_name)
       logger = Logger.new('logfile.log')
-      log_message = "- #{method_name} on #{self.class.name.demodulize}"
+      log_message = "#{method_name} on #{self.class.name.demodulize}"
       logger.info(log_message)
       @logs << log_message
     end
