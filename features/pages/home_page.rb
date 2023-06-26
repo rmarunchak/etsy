@@ -9,7 +9,8 @@ module Elopage
     $credentials = Support::Helpers.new.retrieve_credentials
     set_url $credentials[0]['base_url']
     element :allow_cookies_button, '#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll'
-    element :login_link, :xpath, "//a[contains(text(),'Login')]"
+    #element :login_link, :xpath, "//a[contains(text(),'Login')]"
+    element :login_link, '.elementor-heading-title a'
 
     def initialize
       @logs = []
@@ -27,6 +28,7 @@ module Elopage
       log_info(__method__)
       wait_until_login_link_visible
       login_link.click
+      ensure_staging_environment
       Elopage::SigninPage.new
     end
 
@@ -53,5 +55,14 @@ module Elopage
       logger.info(log_message)
       @logs << log_message
     end
+
+    def ensure_staging_environment
+      unless current_url.include?('staging.elopage.com')
+        route = current_url.split('elopage.com').last
+        staging_url = "https://staging.elopage.com#{route}"
+        visit staging_url
+      end
+    end
+
   end
 end

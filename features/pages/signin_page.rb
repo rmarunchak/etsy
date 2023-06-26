@@ -2,6 +2,7 @@
 
 require_relative 'main_page'
 require_relative '../support/helpers'
+require_relative '../support/relatives'
 
 module Elopage
   class SigninPage < Elopage::MainPage
@@ -9,16 +10,17 @@ module Elopage
     element :email_input, '#email'
     element :password_input, '#password'
 
-    $credentials = Support::Helpers.new.retrieve_credentials
+    def credentials
+      Support::UserCredentials.instance
+    end
 
     def set_email
-      email_input.set($credentials[0]['email_address'])
+      email_input.set(credentials.login)
     end
 
     def set_password
-      password_input.set($credentials[0]['password'])
+      password_input.set(credentials.password)
     end
-
     def tap_sign_in
       sign_in_button.click
     end

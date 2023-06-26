@@ -3,39 +3,24 @@
 require_relative 'main_page'
 require_relative '../support/helpers'
 require_relative '../support/relatives'
+require_relative '../support/logging_facade'
 
 module Elopage
   class ShopPage < Elopage::MainPage
     element :default_banner_image, '#default-shop-banner-img'
 
     def initialize
-      @logs = []
-      File.open('logfile.log', 'w').close
+      @logger = Support::LoggingFacade.new
     end
 
     def select_shop(product)
       sleep 3
-      log_info(__method__)
+      @logger.log_info(__method__, self.class.name.demodulize)
       find(:xpath, "//div[contains(text(),'#{product}')]").click
     end
 
     def attach_logs
-      Allure.add_attachment(
-        name: 'logfile',
-        source: File.read('logfile.log'),
-        type: Allure::ContentType::TXT,
-        test_case: false
-      )
+      @logger.attach_logs
     end
-
-    private
-
-    def log_info(method_name)
-      logger = Logger.new('logfile.log')
-      log_message = "#{method_name} on #{self.class.name.demodulize}"
-      logger.info(log_message)
-      @logs << log_message
-    end
-
   end
 end

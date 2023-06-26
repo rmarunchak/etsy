@@ -14,9 +14,25 @@ module Elopage
     end
 
     def image_upload
-      puts "231123"
-      browser.file_field(upload_button).set("/Users/rmaru/Downloads/the-sopranos.gif")
+      file_path = "/Users/rmaru/Documents/unnamed.png"
+      upload_button.click
+      select_file_with_applescript(file_path)
     end
 
+    def select_file_with_applescript(file_path)
+      script = <<-SCRIPT
+    tell application "System Events"
+      keystroke "G" using {command down, shift down}
+      delay 0.5
+      keystroke "#{file_path}"
+      delay 0.5
+      keystroke return
+      delay 0.5
+      keystroke return
+    end tell
+      SCRIPT
+
+      system("osascript -e '#{script}'")
+    end
   end
 end

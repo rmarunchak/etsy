@@ -11,11 +11,14 @@ module Elopage
     def initialize
       @logs = []
       File.open('logfile.log', 'w').close
+      @notifier = Support::Notifier.new
+      @notifier.add_observer(Support::LoggerObserver.new)
+      @notifier.add_observer(Support::AllureObserver.new)
     end
 
     def verify_thank_you_text
       wait_until_thank_you_text_label_visible
-      page.has_thank_you_text_label?
+      @notifier.notify_observers('Test failed: Thank you text not found') unless page.has_thank_you_text_label?
     end
 
     def attach_logs

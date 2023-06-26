@@ -11,7 +11,7 @@ module Elopage
 
     def tap_profile_menu
       sleep 3
-      #      wait_until_profile_button_visible
+      #wait_until_profile_button_visible
       profile_button.click
     end
 
